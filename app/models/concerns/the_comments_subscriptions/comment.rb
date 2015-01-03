@@ -1,32 +1,8 @@
 module TheCommentsSubscriptions
-  module ModelRelations
-    extend ActiveSupport::Concern
-
-    included do
-      has_many :comment_subscriptions
-
-      has_many :active_subscriptions,
-        -> { where(state: :active) },
-        class_name: :CommentSubscription
-    end
-  end
-
-  module User
-    extend ActiveSupport::Concern
-
-    included do
-      belongs_to :user
-      belongs_to :comment
-
-      validates :user_id, uniqueness: { scope: :comment_id }, if: ->(c) { c.email.blank? }
-      validates :email,   uniqueness: { scope: :comment_id }, if: ->(c) { c.user.blank?  }
-    end
-  end # module User
-
   module Comment
     extend ActiveSupport::Concern
 
-    included { include ::TheComments::CommentSubscription::Relations }
+    included { include ::TheCommentsSubscriptions::Relations }
 
     def add_subscriber(current_user)
       return unless subscribe_to_thread_flag
@@ -46,7 +22,7 @@ module TheCommentsSubscriptions
       comment = self
 
       subscribers_emails.each do |email|
-        if ::TheComments.config.async_processing
+        if ::TheCommentsBase.config.async_processing
           TheCommentsNotificationsJob.perform_later(email, comment.id)
         else
           CommentSubscriberMailer.notificate(email, comment).deliver_now
@@ -70,3 +46,4 @@ module TheCommentsSubscriptions
     end
   end # module Comment
 end
+

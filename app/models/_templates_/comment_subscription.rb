@@ -1,3 +1,3 @@
 class CommentSubscription < ActiveRecord::Base
-  include ::TheCommentsSubscriptions::ModelRelations
+  include ::TheCommentsSubscriptions::Relations
 end

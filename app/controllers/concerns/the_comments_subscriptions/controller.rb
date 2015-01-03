@@ -1,5 +1,5 @@
 # class CommentSubscriptionsController < ApplicationController
-#   include TheComments::SubscriptionsController
+#   include TheCommentsSubscriptions::Controller
 # end
 
 module TheCommentsSubscriptions

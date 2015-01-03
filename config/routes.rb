@@ -1,5 +1,5 @@
-module TheCommentsSubscription
-  # TheCommentsSubscription::Routes.mixin(self)
+module TheCommentsSubscriptions
+  # TheCommentsSubscriptions::Routes.mixin(self)
 
   class Routes
     def self.mixin mapper

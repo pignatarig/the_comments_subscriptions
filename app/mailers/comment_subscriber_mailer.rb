@@ -1,5 +1,5 @@
 class CommentSubscriberMailer < ActionMailer::Base
-  default from: ::TheComments.config.default_mailer_email
+  default from: ::TheCommentsBase.config.default_mailer_email
 
   include TheCommentsViewHelper
 
