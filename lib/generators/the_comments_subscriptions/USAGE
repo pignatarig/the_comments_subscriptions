@@ -4,6 +4,9 @@ Description:
   Usage: [bundle exec] rails g the_comments_subscriptions OPTION_NAME
   Usage: [bundle exec] rails g the_comments_subscriptions:views OPTION_NAME
 
+# MIGRATIONS:
+  > rake the_comments_subscriptions_engine:install:migrations
+
 # This text:
   > rails g the_comments_subscriptions --help
 
@@ -59,11 +62,7 @@ Description:
     config/locales/ru.the_comments_subscriptions.yml
 
 # View Generators:
-  > rails g the_comments_subscriptions:views js
-  > rails g the_comments_subscriptions:views css
-  > rails g the_comments_subscriptions:views assets
-  > rails g the_comments_subscriptions:views helper
-  > rails g the_comments_subscriptions:views views
-
-# Migrations:
-  > rake the_comments_subscriptions_engine:install:migrations
+  > rails g the_comments_subscriptions:views install
+    This will generate:
+      app/views/the_comments/slim/mailers/new_comment.html.slim
+      app/views/the_comments/slim/subscriptions/info.html.slim
