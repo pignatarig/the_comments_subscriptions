@@ -33,7 +33,7 @@ class TheCommentsSubscriptionsGenerator < Rails::Generators::NamedBase
         cp_locales
       else
         puts 'TheCommentsSubscriptions Generator - wrong Name'
-        puts 'Try to use [ install | models | controllers | locales | all ]'
+        puts 'Try to use [ install | models | controllers | mailers | jobs | locales | all ]'
     end
   end
 
