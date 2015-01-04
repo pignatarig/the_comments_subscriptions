@@ -1,5 +1,6 @@
 class TheCommentsSubscriptionsGenerator < Rails::Generators::NamedBase
-  source_root File.expand_path('../templates', __FILE__)
+  source_root TheCommentsSubscriptions::Engine.root
+  # source_root File.expand_path('../templates', __FILE__)
   # argument :xname, type: :string, default: :xname
 
   # > rails g the_comments_subscriptions OPTION_NAME
@@ -39,60 +40,32 @@ class TheCommentsSubscriptionsGenerator < Rails::Generators::NamedBase
 
   private
 
-  def root_path; TheCommentsSubscriptions::Engine.root; end
+  # def root_path; TheCommentsSubscriptions::Engine.root; end
 
   def gen_name
     name.to_s.downcase
   end
 
   def cp_models
-    _path = "#{ root_path }/app/models/_templates_"
-
-    %w[
-      comment_subscription.rb
-    ].each do |file_name|
-      copy_file "#{ _path }/#{ file_name }", "app/models/#{ file_name }"
-    end
+    directory "app/models/_templates_", "app/models"
   end
 
   def cp_controllers
-    _path = "#{ root_path }/app/controllers/_templates_"
-
-    %w[
-      comment_subscriptions_controller.rb
-    ].each do |file_name|
-      copy_file "#{ _path }/#{ file_name }", "app/controllers/#{ file_name }"
-    end
+    directory "app/controllers/_templates_", "app/controllers"
   end
 
   def cp_mailers
-    _path = "#{ root_path }/app/mailers"
-
-    %w[
-      comment_subscriber_mailer.rb
-    ].each do |file_name|
-      copy_file "#{ _path }/#{ file_name }", "app/mailers/#{ file_name }"
-    end
+    d1 = "app/mailers"
+    directory d1, d1
   end
 
   def cp_jobs
-    _path = "#{ root_path }/app/jobs"
-
-    %w[
-      the_comments_subscriptions_job.rb
-    ].each do |file_name|
-      copy_file "#{ _path }/#{ file_name }", "app/jobs/#{ file_name }"
-    end
+    d1 = "app/jobs"
+    directory d1, d1
   end
 
   def cp_locales
-    _path = "#{ root_path }/config/locales"
-
-    %w[
-      en.the_comments_subscriptions.yml
-      ru.the_comments_subscriptions.yml
-    ].each do |file_name|
-      copy_file "#{ _path }/#{ file_name }", "config/locales/#{ file_name }"
-    end
+    d1 = "config/locales"
+    directory d1, d1
   end
 end
