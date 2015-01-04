@@ -1,0 +1,69 @@
+Description:
+  TheCommentsSubscriptions: generators will copy files to install TheComments 3.0 into your App
+
+  Usage: [bundle exec] rails g the_comments_subscriptions OPTION_NAME
+  Usage: [bundle exec] rails g the_comments_subscriptions:views OPTION_NAME
+
+# This text:
+  > rails g the_comments_subscriptions --help
+
+# Main generators:
+  > rails g the_comments_subscriptions install
+
+  This will create:
+    app/models/comment_subscription.rb
+    app/controllers/comment_subscriptions_controller.rb
+    config/locales/en.the_comments_subscriptions.yml
+    config/locales/ru.the_comments_subscriptions.yml
+
+# Model generators:
+  > rails g the_comments_subscriptions models
+
+  This will generate:
+    app/models/comment_subscription.rb
+
+# Controller generators:
+  > rails g the_comments_subscriptions controllers
+
+  This will create:
+    app/controllers/comment_subscriptions_controller.rb
+
+# Mailers generators:
+  > rails g the_comments_subscriptions mailers
+
+  This will generate:
+    app/mailers/comment_subscriber_mailer.rb
+
+# Jobs generators:
+  > rails g the_comments_subscriptions jobs
+
+  This will generate:
+    app/jobs/the_comments_subscriptions_job.rb
+
+# Locales generators:
+  > rails g the_comments_subscriptions locales
+
+  This will generate:
+    config/locales/en.the_comments_subscriptions.yml
+    config/locales/ru.the_comments_subscriptions.yml
+
+# All generators:
+  > rails g the_comments_subscriptions all
+
+  This will generate:
+    app/models/comment_subscription.rb
+    app/controllers/comment_subscriptions_controller.rb
+    app/mailers/comment_subscriber_mailer.rb
+    app/jobs/the_comments_subscriptions_job.rb
+    config/locales/en.the_comments_subscriptions.yml
+    config/locales/ru.the_comments_subscriptions.yml
+
+# View Generators:
+  > rails g the_comments_subscriptions:views js
+  > rails g the_comments_subscriptions:views css
+  > rails g the_comments_subscriptions:views assets
+  > rails g the_comments_subscriptions:views helper
+  > rails g the_comments_subscriptions:views views
+
+# Migrations:
+  > rake the_comments_subscriptions_engine:install:migrations

@@ -23,9 +23,9 @@ module TheCommentsSubscriptions
 
       subscribers_emails.each do |email|
         if ::TheCommentsBase.config.async_processing
-          TheCommentsNotificationsJob.perform_later(email, comment.id)
+          TheCommentsSubscriptionsJob.perform_later(email, comment.id)
         else
-          CommentSubscriberMailer.notificate(email, comment).deliver_now
+          TheCommentsSubscriptionsMailer.notificate(email, comment).deliver_now
         end
       end
     end
