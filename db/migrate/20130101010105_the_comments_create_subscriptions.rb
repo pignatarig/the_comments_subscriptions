@@ -1,4 +1,4 @@
-class TheCommentsSubscriptions < ActiveRecord::Migration
+class TheCommentsCreateSubscriptions < ActiveRecord::Migration
   def change
     create_table :comment_subscriptions do |t|
       t.integer :user_id
