@@ -13,7 +13,7 @@ class TheCommentsSubscriptionsMailer < ActionMailer::Base
     mail(
       to: email,
       subject: "TheComments::New Comment",
-      template_path: comment_template('mailers'),
+      template_path: the_comments_template('mailers'),
       template_name: "new_comment"
     )
   end
