@@ -5,6 +5,10 @@ module TheCommentsSubscriptions
     included { include ::TheCommentsSubscriptions::Relations }
 
     def add_subscriber(current_user)
+      logger.debug { "*" * 50 }
+      logger.debug { "TheComments::Subscriptions::AddSubscriber" }
+      logger.debug { "*" * 50 }
+
       return unless subscribe_to_thread_flag
       comment = self
 
@@ -19,6 +23,10 @@ module TheCommentsSubscriptions
     end
 
     def send_notifications_to_subscribers
+      logger.debug { "*" * 50 }
+      logger.debug { "TheComments::Subscriptions::SendNotifications" }
+      logger.debug { "*" * 50 }
+
       comment = self
 
       subscribers_emails.each do |email|
