@@ -94,11 +94,11 @@ module TheCommentsSubscriptions
     # COMMON
     # =====================================
     def define_subscriptions_params
-      @type    = params[:type].to_s.to_the_decrypted.downcase
-      @user_id = @email = params[:id].to_s.to_the_decrypted
+      @type    = EncryptorHelper.decrypt(params[:type]).downcase
+      @user_id = @email = EncryptorHelper.decrypt(params[:id])
 
       if params[:comment_id]
-        @comment_id  = params[:comment_id].to_s.to_the_decrypted
+        @comment_id  = EncryptorHelper.decrypt(params[:comment_id])
         @comment     = ::Comment.find @comment_id
         @comments_id = @comment.commentable.comments.pluck(:id)
       end

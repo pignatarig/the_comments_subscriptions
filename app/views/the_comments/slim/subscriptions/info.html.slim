@@ -17,18 +17,18 @@ h3 TheComments Subscribtion info
   h4 Manage comments subscriptions
   - if @type == 'user'
     - if @comment
-      - url_data = [ 'user', @comment.id, @user.id ].map{|i| i.to_s.to_the_encrypted }
+      - url_data = [ 'user', @comment.id, @user.id ].map{|i| EncryptorHelper.crypt(i) }
 
       p= link_to "Unsub comment",     unsubscribe_comment_path(*url_data)
       p= link_to "Unsub commentable", unsubscribe_commentable_path(*url_data)
 
-    p= link_to "Unsub all",         unsubscribe_all_path('user'.to_the_encrypted, @user.id.to_s.to_the_encrypted)
+    p= link_to "Unsub all",         unsubscribe_all_path(EncryptorHelper.crypt('user'), EncryptorHelper.crypt(@user.id))
 
   - if @type == 'email'
     - if @comment
-      - url_data = [ 'email', @comment.id, @email ].map{|i| i.to_s.to_the_encrypted }
+      - url_data = [ 'email', @comment.id, @email ].map{|i| EncryptorHelper.crypt(i) }
 
       p= link_to "Unsub comment",     unsubscribe_comment_path(*url_data)
       p= link_to "Unsub commentable", unsubscribe_commentable_path(*url_data)
 
-    p= link_to "Unsub all",         unsubscribe_all_path('email'.to_the_encrypted, @email.to_the_encrypted)
+    p= link_to "Unsub all",         unsubscribe_all_path(EncryptorHelper.crypt('email'), EncryptorHelper.crypt(@email))
