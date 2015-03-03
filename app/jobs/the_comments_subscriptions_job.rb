@@ -5,7 +5,7 @@ class TheCommentsSubscriptionsJob < ActiveJob::Base
   # TheCommentsNotificationsJob.perform_now(email, comment_id)
   def perform(email, comment_id)
     comment = Comment.find(comment_id)
-    TheCommentsSubscriptionsMailer.notificate(email, comment).deliver_now
+    ::TheCommentsSubscriptionsMailer.notificate(email, comment).deliver_now
   end
 end
 
