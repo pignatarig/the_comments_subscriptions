@@ -11,9 +11,9 @@ module TheCommentsSubscriptions
 
       return unless subscribe_to_thread_flag
       comment = self
-
+      
       if current_user
-        comment.comment_subscriptions.create(user_id: current_user.id)
+        comment.comment_subscriptions.create(user_id: current_user.id, email: nil)
       else
         _email = ::TheCommentsBase.normalize_email(contacts)
         if _email.match ::TheCommentsBase::EMAIL_REGEXP
@@ -28,8 +28,9 @@ module TheCommentsSubscriptions
       logger.debug { "*" * 50 }
 
       comment = self
-
+            
       subscribers_emails.each do |email|
+        
         if ::TheCommentsBase.config.async_processing
           ::TheCommentsSubscriptionsJob.perform_later(email, comment.id)
         else
@@ -46,7 +47,10 @@ module TheCommentsSubscriptions
 
       subscriptions = parents.map(&:active_subscriptions).compact.flatten
       users = ::User.where(id: subscriptions.map(&:user_id).compact)
-
+      
+      #current comment subscriptions (to send email to admin)
+      users += ::User.where(id: comment.active_subscriptions.to_a.compact.flatten.map(&:user_id).compact)
+      
       u_emails = users.map(&:email).compact
       g_emails = subscriptions.map(&:email).compact
 
@@ -54,4 +58,6 @@ module TheCommentsSubscriptions
     end
   end # module Comment
 end
+
+
 

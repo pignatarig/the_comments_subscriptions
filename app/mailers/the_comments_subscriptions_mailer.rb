@@ -12,7 +12,7 @@ class TheCommentsSubscriptionsMailer < ActionMailer::Base
 
     mail(
       to: email,
-      subject: "TheComments::New Comment",
+      subject: "[armatucasino.com] Nuevo Comentario en #{comment.commentable.name}",
       template_path: the_comments_template('mailers'),
       template_name: "new_comment"
     )
